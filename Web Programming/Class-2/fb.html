@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta Data -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind CSS from dist -->
+  <!-- <link id="cssLink" rel="stylesheet" href="../dist/main.css" /> -->
+
+  <!-- TITLE -->
+  <title>Facebook - log in or sign up</title>
+</head>
+
+<body>
+
+    <table>
+    <tr>
+        <!-- left -->
+        <td>
+            <h1> <font color="blue">facebook</font></h1>
+            <h2>Facebook helps you connect and share with the people in your life.</h2>
+        </td>
+        <!-- right -->
+        <td>
+            <!-- login form -->
+            <table>
+                <tr><td border="1"><input type="text" placeholder="Email address or phone number"></td></tr>
+                <tr><td><input type="password" placeholder="Password"></td></tr>
+                <tr><td><button>Login</button></td></tr>
+                <tr><td><a href="#">Forgotten password?</a></td></tr>
+                <tr><td><hr/></td></tr>
+                <tr><td><button>Create new account</button></td></tr>
+                <tr><td></td></tr>
+            </table>
+        </td>
+    </tr>
+    </table>
+  
+  <!-------------------------------------->
+  <!-------------------------------------->
+  <!-------------------------------------->
+
+  <!-- 
+        * Script to re-apply updated styles with js time
+        * function in-case it get loaded from browser cache. 
+    -->
+  <script>
+    function injectUpdatedStyles() {
+      const random = Math.floor(Math.random() * 100000);
+      const cssLink = document.getElementById("cssLink");
+      const cssUrl = cssLink.getAttribute("href");
+      const updatedCssUrl = `${cssUrl}?v=${random}`;
+      cssLink.setAttribute("href", updatedCssUrl);
+    }
+    injectUpdatedStyles();
+  </script>
+</body>
+
+</html>

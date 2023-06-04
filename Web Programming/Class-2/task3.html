@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Data -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tailwind CSS from dist -->
+    <!-- <link id="cssLink" rel="stylesheet" href="../dist/main.css" /> -->
+
+    <!-- TITLE -->
+    <title>Survey Form</title>
+</head>
+
+<body>
+    <h1>Survey on Animal</h1>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa beatae quam pariatur id! Laboriosam assumenda ad
+        magnam cumque harum autem cupiditate ut eius quos laborum iste, a nisi veniam soluta earum cum qui distinctio
+        sunt rerum. Facilis vitae eum facere sapiente excepturi eligendi officia, aliquid, officiis totam doloribus
+        saepe optio, nemo consequuntur? Minus eos asperiores quaerat dolorem hic doloribus ex vitae dolore dolorum eum
+        quod deleniti natus, eius, mollitia quidem quisquam fugit reiciendis atque similique quam ab id quas ut? Sit
+        incidunt deleniti, facere, aliquam id nemo dolore ex quis consectetur, tempora atque magni! Dolor quisquam
+        beatae sint libero accusamus?</p>
+
+    <form action="">
+        <table>
+            <tr>
+                <td><img width="100"
+                        src="https://th.bing.com/th/id/R.d4f6e52132bb160ac87a2894992f917f?rik=OcHFdCGYLcpqEA&riu=http%3a%2f%2fwallup.net%2fwp-content%2fuploads%2f2016%2f10%2f12%2f373676-animals-mammals.jpg&ehk=KXCJjHZpJsHLupe9CBC%2b1qfSvKK63FIg9HRkF3n0tV0%3d&risl=&pid=ImgRaw&r=0" />
+                </td>
+                <td><img width="100"
+                        src="https://th.bing.com/th/id/R.16a3e3e2682df2dc273ae8c22957ca0d?rik=6dnUUPFPbNF51Q&riu=http%3a%2f%2f1.bp.blogspot.com%2f-W49fY5Lp-60%2fT8JZFzX-ayI%2fAAAAAAAAANA%2fwyY2g5aHWqw%2fs1600%2fwild-animal-wallpaper-015.jpg&ehk=srirzNOtAN1EpfnAATABV59mlZydRNoNp6uueJuugV8%3d&risl=&pid=ImgRaw&r=0" />
+                </td>
+                <td><img width="100"
+                        src="https://sm.mashable.com/t/mashable_sea/fun/1/15-of-the-/15-of-the-best-animal-photos-from-2020_u43m.1200.jpg" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"><input type="text"></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime magnam sed quasi suscipit
+                        corrupti ratione voluptatibus iure, error rem recusandae libero debitis blanditiis mollitia aut
+                        fugiat ducimus animi sequi quia!</p>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="radio" name="a"> <label for="a"> Test 1</label></td>
+                <td><input type="radio" name="a"> <label for="a"> Test 2</label></td>
+                <td><input type="radio" name="a"> <label for="a"> Test 3</label></td>
+            </tr>
+            <tr>
+                <td colspan="3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet labore, placeat iure
+                    provident vero molestiae ut temporibus repellat non ab quae, ullam quia dicta maiores quod eligendi
+                    a quasi autem vel voluptatem obcaecati incidunt aspernatur? Quidem, in mollitia corporis velit a
+                    quod. Voluptatibus animi.</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="b"> <label for="b"> Checkbox 1</label></td>
+                <td><input type="checkbox" name="b"> <label for="b"> Checkbox 2</label></td>
+                <td><input type="checkbox" name="b"> <label for="b"> Checkbox 3</label></td>
+            </tr>
+        </table>
+    </form>
+
+    <!-------------------------------------->
+    <!-------------------------------------->
+    <!-------------------------------------->
+
+    <!-- 
+        * Script to re-apply updated styles with js time
+        * function in-case it get loaded from browser cache. 
+    -->
+    <script>
+        function injectUpdatedStyles() {
+            const random = Math.floor(Math.random() * 100000);
+            const cssLink = document.getElementById("cssLink");
+            const cssUrl = cssLink.getAttribute("href");
+            const updatedCssUrl = `${cssUrl}?v=${random}`;
+            cssLink.setAttribute("href", updatedCssUrl);
+        }
+        injectUpdatedStyles();
+    </script>
+</body>
+
+</html>

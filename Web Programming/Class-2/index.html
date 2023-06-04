@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta Data -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind CSS from dist -->
+  <link id="cssLink" rel="stylesheet" href="../dist/main.css" />
+
+  <!-- TITLE -->
+  <title>Class-2</title>
+</head>
+
+<body class="flex justify-center items-center content-center">
+  <div>
+    <img src="./img.jpg" height="150" alt="" />
+    <table>
+      <tr>
+        <td>
+          Full Name:
+        </td>
+
+        <td>
+          <input type="text" />
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          Photo:
+        </td>
+
+        <td>
+          <input type="file" accept="image/*" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button>Upload</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!-------------------------------------->
+  <!-------------------------------------->
+  <!-------------------------------------->
+
+  <!-- 
+        * Script to re-apply updated styles with js time
+        * function in-case it get loaded from browser cache. 
+    -->
+  <script>
+    function injectUpdatedStyles() {
+      const random = Math.floor(Math.random() * 100000);
+      const cssLink = document.getElementById("cssLink");
+      const cssUrl = cssLink.getAttribute("href");
+      const updatedCssUrl = `${cssUrl}?v=${random}`;
+      cssLink.setAttribute("href", updatedCssUrl);
+    }
+    injectUpdatedStyles();
+  </script>
+</body>
+
+</html>
