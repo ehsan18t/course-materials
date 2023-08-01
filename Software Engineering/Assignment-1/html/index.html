@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link id="cssLink" rel="stylesheet" href="./dist/main.css" />
+    <title>Codeforces API Test</title>
+    <style>
+      /* Add custom styles here */
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="relative flex flex-nowrap items-stretch">
+        <span
+          class="flex items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
+          id="addon-wrapping"
+        >
+          @
+        </span>
+        <input
+          name="cf_handle"
+          id="cf_handle"
+          onkeydown="update_data(event)"
+          type="text"
+          class="relative m-0 block w-[1px] min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+          placeholder="Username"
+          aria-label="Username"
+          aria-describedby="addon-wrapping"
+        />
+      </div>
+      <div id="main" class="hidden flex-col justify-center">
+        <div class="head">
+          <img
+            class="h-64 w-64 rounded-full ring-8 ring-gray-300 border-8 border-gray-400"
+            id="profile_pic"
+            alt=""
+          />
+          <h1 id="cf_name">Test Name</h1>
+          <div id="info" class="p-6 border-gray-400 border-2 rounded-lg"></div>
+        </div>
+        <!-- Contest List -->
+        <div
+          class="contest mt-10 flex flex-col gap-4 justify-center items-center"
+        >
+          <div class="search">
+            <input
+              type="text"
+              class="searchTerm"
+              id="contest_search_input"
+              placeholder="Search for a contest"
+              oninput="handleSearch()"
+            />
+          </div>
+          <div id="contest_list" class="flex flex-col gap-3"></div>
+        </div>
+      </div>
+
+      <div
+        id="warning"
+        class="hidden justify-center text-3xl text-red-600 mt-10"
+      >
+        User not found or an error occurred. Please check the username and try
+        again.
+      </div>
+    </div>
+
+    <script>
+      function replace_class(id, oClass, nClass) {
+        const element = document.getElementById(id);
+        element.classList.remove(oClass);
+        element.classList.add(nClass);
+      }
+
+      function add_info(id, title, text) {
+        const element = document.getElementById(id);
+        const div = document.createElement("div");
+        div.classList.add("flex", "gap-2");
+
+        const div_title = document.createElement("div");
+        div_title.classList.add("font-semibold");
+        div_title.innerText = title;
+        div.appendChild(div_title);
+
+        const div_text = document.createElement("div");
+        div_text.innerText = text;
+        div.appendChild(div_text);
+
+        element.appendChild(div);
+      }
+
+      function remove_all_child(id) {
+        const element = document.getElementById(id);
+        while (element.firstChild) {
+          element.removeChild(element.firstChild);
+        }
+      }
+
+      function update_data(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          const cf_handle = document.getElementById("cf_handle").value;
+          if (cf_handle.length > 0) {
+            fetch_data(cf_handle);
+            fetch_contests(cf_handle);
+          }
+        }
+      }
+
+      function fetch_data(handle) {
+        const url = `https://codeforces.com/api/user.info?handles=${handle}`;
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            if (
+              data.status === "FAILED" ||
+              !data.result ||
+              data.result.length === 0
+            ) {
+              document.getElementById("cf_name").innerText = "User Not Found";
+              replace_class("main", "flex", "hidden");
+              remove_all_child("info");
+              show_warning();
+            } else {
+              const user = data.result[0];
+              replace_class("main", "hidden", "flex");
+              replace_data(user);
+              hide_warning();
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+
+      function add_contest(id, contests) {
+        const element = document.getElementById(id);
+        remove_all_child(id);
+        contests.forEach((contest) => {
+          const div = document.createElement("div");
+          div.classList.add(
+            "flex",
+            "gap-3",
+            "border-gray-400",
+            "border-2",
+            "rounded-lg",
+            "p-2"
+          );
+
+          const div_title = document.createElement("div");
+          div_title.classList.add("font-semibold");
+          div_title.innerText = contest.contestName;
+
+          const div_text = document.createElement("div");
+          div_text.innerText = "Rank: " + contest.rank;
+
+          const a = document.createElement("a");
+          a.href = `https://codeforces.com/contest/${contest.contestId}`;
+          a.target = "_blank";
+          a.appendChild(div_title);
+          a.appendChild(div_text);
+
+          div.appendChild(a);
+          element.appendChild(div);
+        });
+      }
+
+      function fetch_user_contests(handle) {
+        const url = `https://codeforces.com/api/user.rating?handle=${handle}`;
+        return fetch(url).then((response) => response.json());
+      }
+
+      function update_contests(handle) {
+        fetch_user_contests(handle)
+          .then((data) => {
+            if (data.status === "FAILED" || !data.result) {
+              remove_all_child("contest_list");
+              show_warning();
+            } else {
+              hide_warning();
+              userContests = data.result;
+              add_contest("contest_list", userContests);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            remove_all_child("contest_list");
+            show_warning();
+          });
+      }
+
+      function handleSearch() {
+        const searchQuery = document.getElementById(
+          "contest_search_input"
+        ).value;
+        if (searchQuery.length > 0) {
+          const filteredContests = userContests.filter((contest) =>
+            contest.contestName
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase())
+          );
+          remove_all_child("contest_list");
+          add_contest("contest_list", filteredContests);
+        } else {
+          remove_all_child("contest_list");
+          add_contest("contest_list", userContests);
+        }
+      }
+
+      let userContests = [];
+
+      function fetch_contests(handle) {
+        fetch_user_contests(handle).then((data) => {
+          if (data.status === "FAILED" || !data.result) {
+            userContests = [];
+            remove_all_child("contest_list");
+            show_warning();
+          } else {
+            userContests = data.result;
+            add_contest("contest_list", userContests);
+          }
+        });
+      }
+
+      function replace_data(data) {
+        // user Name
+        document.getElementById(
+          "cf_name"
+        ).innerText = `${data.firstName} ${data.lastName}`;
+        // Profile Picture
+        document.getElementById("profile_pic").src = data.titlePhoto;
+
+        // Clear existing user information elements
+        remove_all_child("info");
+
+        // Add new user information elements
+        add_info("info", "Handle:", data.handle);
+        add_info("info", "Name:", `${data.firstName} ${data.lastName}`);
+        add_info("info", "Country:", data.country);
+        add_info("info", "City:", data.city);
+        add_info("info", "Current Rating:", data.rating);
+        add_info("info", "Max Rating:", data.maxRating);
+        add_info("info", "Organization:", data.organization);
+        add_info("info", "Rank:", data.rank);
+      }
+
+      function show_warning() {
+        replace_class("warning", "hidden", "flex");
+      }
+
+      function hide_warning() {
+        replace_class("warning", "flex", "hidden");
+      }
+    </script>
+  </body>
+</html>
