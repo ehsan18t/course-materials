@@ -32,15 +32,24 @@
             padding-top: 20px;
         }
     </style>
-    <title>SQA Assignment Cover Page</title>
 </head>
 <body>
     <div class="cover-page">
         <h1 class="title">SQA Assignment 1</h1>
         <div class="subtitle">Server Test Report</div>
         <div class="info" style="text-align: left; margin-left: 16rem">
-            <p>Name: <strong>Md. Ehsan Khan</strong></p>
-            <p>ID: <strong>011201122</strong></p>
+            <p>Submitted By: <br/>
+            <ul>
+              <li>
+                <strong>Md. Ehsan Khan</strong> <code>011201122</code>
+              </li>
+              <li>
+                <strong>Shofi Rayhan Siyam</strong> <code>011201117</code>
+              </li>
+              <li>
+                <strong>Muhammad Rahat Ahasan</strong> <code>011201112</code>
+              </li>
+            </ul>
             <p>Section: <strong>B</strong></p>
             <p>Course: <strong>CSE 4495</strong></p>
             <p>Submitted To: <strong>Md. Mohaiminul Islam</strong></p>
@@ -54,6 +63,10 @@
 </body>
 </html>
 
+# Links
+ - Report (Markdown): [Report](https://github.com/ehsan18t/course-materials/blob/main/SQA/Assignment-1/Report/Report.md)
+ - Postman Collection Export: [SQA Assignment 1.postman_collection.json](https://github.com/ehsan18t/course-materials/raw/refs/heads/main/SQA/Assignment-1/Postman%20Collection/SQA-Assignment-1-Test.postman_collection.json)
+ - Postman Collection Online: [SQA Assignment 1](https://www.postman.com/ehsan18t/workspace/public/collection/28446015-1c02d430-87f3-493f-9a95-6a150d9951b9) 
 
 ### API Endpoint 1: `/student`
 #### Method: `GET`
