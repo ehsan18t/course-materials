@@ -29,7 +29,6 @@
 <body>
     <div class="cover-page">
         <h1 class="title">SQA Assignment 1</h1>
-        <div class="subtitle">Server Test Report</div>
         <div class="info" style="text-align: left; margin-left: 16rem">
             <p>Submitted By: <br/>
             <ul>
@@ -55,3 +54,17 @@
     </div>
 </body>
 </html>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>

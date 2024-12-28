@@ -1,12 +1,8 @@
-# Abstract
-This report summarizes the testing of a Flask-based API for managing students and programs. The tests validated the API's functionality, reliability, and error handling through various scenarios, including edge cases. The results confirm the API's readiness for deployment while highlighting areas for potential improvement.
-
 # Links
  - Report (Markdown): [Report](https://github.com/ehsan18t/course-materials/blob/main/SQA/Assignment-1/Report/Report.md)
  - Postman Collection Export: [SQA Assignment 1.postman_collection.json](https://github.com/ehsan18t/course-materials/raw/refs/heads/main/SQA/Assignment-1/Postman%20Collection/SQA-Assignment-1-Test.postman_collection.json)
  - Postman Collection Online: [SQA Assignment 1](https://www.postman.com/ehsan18t/workspace/public/collection/28446015-1c02d430-87f3-493f-9a95-6a150d9951b9) 
 
-<br/>
 <br/>
 
 # Test Report
