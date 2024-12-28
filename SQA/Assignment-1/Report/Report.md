@@ -1,7 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .cover-page {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .title {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+        }
+        .info {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .abstract {
+            margin-top: 50px;
+            font-size: 1em;
+            padding-top: 20px;
+        }
+    </style>
+    <title>SQA Assignment Cover Page</title>
+</head>
+<body>
+    <div class="cover-page">
+        <h1 class="title">SQA Assignment 1</h1>
+        <div class="subtitle">Server Test Report</div>
+        <div class="info" style="text-align: left; margin-left: 16rem">
+            <p>Name: <strong>Md. Ehsan Khan</strong></p>
+            <p>ID: <strong>011201122</strong></p>
+            <p>Section: <strong>B</strong></p>
+            <p>Course: <strong>CSE 4495</strong></p>
+            <p>Submitted To: <strong>Md. Mohaiminul Islam</strong></p>
+            <p>Date: <strong>28 Dec 2024</strong></p>
+        </div>
+    </div>
+    <div class="abstract">
+        <h1 style="font-size: 1.2em;"><strong>Abstract</strong></h1>
+        <p align="justify">This report summarizes the testing of a Flask-based API for managing students and programs. The tests validated the API's functionality, reliability, and error handling through various scenarios, including edge cases. The results confirm the API's readiness for deployment while highlighting areas for potential improvement.</p>
+    </div>
+</body>
+</html>
+
+
 ### API Endpoint 1: `/student`
 #### Method: `GET`
-#### Request Body
-`NONE`
+#### Request Body: `NONE`
 #### Response
 ```json
 [
@@ -167,6 +223,9 @@ pm.test("Personnummer is in a valid format", function () {
     });
 });
 ```
+#### Purpose
+- To test the API endpoint `/student` with a valid request
+
 #### Assertion
 - `PASSED` Response status code is 200
 - `PASSED` Response has the required fields
@@ -177,8 +236,7 @@ pm.test("Personnummer is in a valid format", function () {
 
 ### API Endpoint 2: `/student/1`
 #### Method: `GET`
-#### Request Body
-`NONE`
+#### Request Body: `NONE`
 #### Response
 ```json
 {
@@ -234,6 +292,9 @@ pm.test("Personnummer is in a valid format", function () {
 });
 
 ```
+#### Purpose
+- To test the API endpoint `/student/1` with a valid student ID
+
 #### Assertion
 - `PASSED` Response status code is 200
 - `PASSED` Response has the required fields
@@ -244,8 +305,7 @@ pm.test("Personnummer is in a valid format", function () {
 
 ### API Endpoint 3: `/student/10`
 #### Method: `GET`
-#### Request Body
-`NONE`
+#### Request Body: `NONE`
 #### Response
 ```json
 {
@@ -262,6 +322,9 @@ pm.test("Response is in JSON format", function () {
     pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
 });
 ```
+#### Purpose
+- To test the API endpoint `/student/10` with a non-existent student ID
+
 #### Assertion
 - `PASSED` Response status code is 404
 - `PASSED` Response is in JSON format
@@ -328,6 +391,8 @@ pm.test("Name and personnummer are non-empty strings", function () {
 });
 
 ```
+#### Purpose
+- To test the API endpoint `/create` with a valid request body
 #### Assertion
 - `PASSED` Response status code is 201
 - `PASSED` Response has the required fields
